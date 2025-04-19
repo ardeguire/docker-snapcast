@@ -2,19 +2,20 @@ FROM ghcr.io/linuxserver/baseimage-alpine:edge
 
 # set version label
 ARG BUILD_DATE
-ARG VERSION
 ARG SNAPCAST_RELEASE
 ARG LIBRESPOT_RELEASE
 
-LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="sweisgerber"
+LABEL build_version="version:- snapcast-${SNAPCAST_RELEASE}-librespot-${LIBRESPOT_RELEASE} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="ardeguire"
 
+# install pacakges
 RUN set -ex \
   echo "**** setup apk testing mirror ****" \
   && echo "@testing https://nl.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
   && cat /etc/apk/repositories \
   && echo "**** install runtime packages ****" \
-  && apk add --no-cache -U --upgrade \
+  && apk update && apk upgrade \
+  && apk add --no-cache \
     alsa-utils \
     dbus \
     librespot@testing=~${LIBRESPOT_RELEASE} \
@@ -39,6 +40,7 @@ COPY root/ /
 
 # ports and volumes
 EXPOSE 1704
+EXPOSE 1705
 EXPOSE 1780
 #
 VOLUME /config /data

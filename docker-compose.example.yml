@@ -5,13 +5,14 @@ services:
     hostname: snapcast
     environment:
       - PUID=1000
-      - PGID=1000 # set to audio group ID
+      - PGID=1000
       - TZ=Europe/Berlin
+      - START_SNAPSERVER=true # set to `false` to skip snapserver (be sure to set START_SNAPCLIENT to `true` for snapclient only)
       - START_SNAPCLIENT=false # set to `true` for snapclient to start
-      # --host: name or ip of compose service or dockerhost
-      # --soundcard: <ID> from `snapclient -l` from inside the container
+      ## --host: name or ip of compose service or dockerhost
+      ## --soundcard: <ID> from `snapclient -l` from inside the container
       # - SNAPCLIENT_OPTS=--host snapcast --soundcard <ID>
-      #   => Don't use quotes for SNAPCLIENT_OPTS="" !
+      ##   => Don't use quotes for SNAPCLIENT_OPTS="" !
       # - HOST_AUDIO_GROUP=<AUDIO-GID> # set to GID of host audio group
       - START_AIRPLAY=false # set to 'true' to enable Airplay support via Shairport-sync
     restart: "unless-stopped"

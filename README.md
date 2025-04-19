@@ -21,7 +21,7 @@ Should get used in conjunction with a player, that plays to a FIFO, like:
 - Start either Snapserver or Snapclient
     - if you are running on a container-focused OS, such as Fedora CoreOS, long-running services should be in containers, but you can have only one Snapserver running on your network, so this gives the option to run either one, or both
 - [snapweb](https://github.com/badaix/snapweb) management interface & browser audio playback
-    - default on http://<SERVER>:1780m which include a browser snapclient player
+    - default on http://<SERVER>:1780 which include a browser snapclient player
 - alsa
 - librespot (for functioning as spotify target)
 - shairport-sync (for functioning as airplay target)
@@ -84,3 +84,9 @@ To enable snapclient:
     - probably you will need to specify soundcard `--soundcard`, find out with `snapclient --list`
 
 In any case, give [the official documentation a read](https://github.com/badaix/snapcast#client)
+
+## Building the docker image locally
+
+```sh
+docker build -t snapcast:local --build-arg SNAPCAST_RELASE=${snapcast version to include} --build-arg LIBRESPOT_RELEASE=${librespot version to include} /path/to/repo/basedir/
+```

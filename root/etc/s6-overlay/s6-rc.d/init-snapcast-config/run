@@ -21,7 +21,7 @@ if [ "$START_SNAPSERVER" = 'true' ]; then
 fi
 
 if [ "$START_SNAPCLIENT" = 'true' ]; then
-  if [ -n ${HOST_AUDIO_GROUP+x} ]; then
+  if [ -n "${HOST_AUDIO_GROUP}" ]; then
     echo "Add HOST_AUDIO_GROUP: '$HOST_AUDIO_GROUP'"
     addgroup host-audio -g $HOST_AUDIO_GROUP
     addgroup abc host-audio

@@ -2,13 +2,13 @@
 
 # Check if snapclient should get started
 if [ "$START_SNAPCLIENT" = 'true' ]; then
-  if [ -n ${HOST_AUDIO_GROUP+x} ]; then
+  if [ -n "${HOST_AUDIO_GROUP}" ]; then
     # Use HOST Audio group permissions, as the mounted /dev/snd will have those permissions
-    export SNAPCLIENT_PROCESS_PORT=${HOST_AUDIO_GROUP}
+    export SNAPCLIENT_PROCESS_GROUP=${HOST_AUDIO_GROUP}
   else
     # Use user configured group permissions, if HOST_AUDIO_GROUP is unset
-    export SNAPCLIENT_PROCESS_PORT=${PGID}
+    export SNAPCLIENT_PROCESS_GROUP=${PGID}
   fi
   exec \
-    s6-setuidgid $PUID:$SNAPCLIENT_PROCESS_PORT /usr/bin/snapclient $SNAPCLIENT_OPTS
+    s6-setuidgid $PUID:$SNAPCLIENT_PROCESS_GROUP /usr/bin/snapclient $SNAPCLIENT_OPTS
 fi
