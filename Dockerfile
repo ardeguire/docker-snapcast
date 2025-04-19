@@ -28,6 +28,7 @@ RUN set -ex \
 # apk add alsa-utils alsa-lib alsaconf alsa-ucm-conf
 # environment settings
 ENV \
+START_SNAPSERVER=true \
 START_SNAPCLIENT=false \
 START_AIRPLAY=false \
 SNAPCLIENT_OPTS="" \

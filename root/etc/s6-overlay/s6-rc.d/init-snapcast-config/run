@@ -15,6 +15,11 @@ lsiown -R abc:abc \
     /data \
     /audio
 
+if [ "$START_SNAPSERVER" = 'true' ]; then
+  echo "START_SNAPSERVER set to true, making sure it starts before snapclient (if enabled)"
+  touch /etc/s6-overlay/s6-rc.d/svc-snapclient/dependencies.d/svc-snapserver
+fi
+
 if [ "$START_SNAPCLIENT" = 'true' ]; then
   if [ -n ${HOST_AUDIO_GROUP+x} ]; then
     echo "Add HOST_AUDIO_GROUP: '$HOST_AUDIO_GROUP'"

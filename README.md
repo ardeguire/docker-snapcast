@@ -18,8 +18,8 @@ Should get used in conjunction with a player, that plays to a FIFO, like:
 ## Features Include:
 
 - Snapserver w/ [sane defaults](./root/defaults/snapserver.conf)
-- Snapclient (optional, needs mounting of host audio devices into docker)
-    - I prefer using the snapclient as [host distribution package](https://github.com/badaix/snapcast/tree/develop#install-linux-packages-recommended-for-beginners).
+- Start either Snapserver or Snapclient
+    - if you are running on a container-focused OS, such as Fedora CoreOS, long-running services should be in containers, but you can have only one Snapserver running on your network, so this gives the option to run either one, or both
 - [snapweb](https://github.com/badaix/snapweb) management interface & browser audio playback
     - default on http://<SERVER>:1780m which include a browser snapclient player
 - alsa
